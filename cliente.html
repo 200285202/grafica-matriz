@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Clientes - Gráfica Matriz</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="CSS/Estilo22.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #f5f5f5 0%, #ffffff 100%);
+            color: #1e1e2a;
+            padding: 0 20px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 60px;
+            margin: 20px auto 40px;
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e1e2a;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #982929;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #982929, #f9bf00);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== SEÇÃO CLIENTES ===== */
+        .clientes-section {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 50px 30px;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 40px auto;
+        }
+
+        .clientes-section h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #1e1e2a;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .clientes-section h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #982929, #f9bf00);
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(152, 41, 41, 0.3);
+        }
+
+        .clientes-section p {
+            color: #4a4a5a;
+            font-weight: 300;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .clientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 25px;
+            margin-top: 45px;
+        }
+
+        .cliente-item {
+            background: white;
+            border-radius: 24px;
+            padding: 25px 15px 20px 15px;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de brilho no hover */
+        .cliente-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg);
+            transition: left 0.7s ease;
+        }
+
+        .cliente-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #982929;
+            box-shadow: 0 25px 40px -12px rgba(152, 41, 41, 0.3);
+        }
+
+        .cliente-item:hover::before {
+            left: 125%;
+        }
+
+        /* Estilo das imagens (logos) */
+        .cliente-item img {
+            max-width: 100%;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            transition: all 0.4s ease;
+            display: block;
+            margin-bottom: 12px;
+            filter: grayscale(100%) brightness(1.1) contrast(0.9);
+            opacity: 0.75;
+        }
+
+        .cliente-item:hover img {
+            filter: grayscale(0%) brightness(1) contrast(1);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Nome do cliente (opcional) */
+        .cliente-nome {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .cliente-item:hover .cliente-nome {
+            color: #982929;
+        }
+
+        /* ===== RODAPÉ ===== */
+        .footer {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 -10px 30px -10px rgba(0,0,0,0.05);
+            margin-top: 60px;
+            border-radius: 40px 40px 0 0;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #982929;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #982929, #f9bf00);
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-col p {
+            color: #4a4a5a;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: #4a4a5a;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-col a:hover {
+            color: #982929;
+        }
+
+        .footer-logo {
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(152,41,41,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #982929;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .social-links a:hover {
+            background: #982929;
+            color: white;
+            transform: translateY(-3px);
+            border-color: #f9bf00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .clientes-section h2 {
+                font-size: 2.2rem;
+            }
+            .clientes-grid {
+                gap: 18px;
+            }
+            .cliente-item {
+                padding: 18px 10px 12px 10px;
+            }
+            .cliente-item img {
+                max-height: 60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .logo img {
+                height: 40px;
+            }
+            .clientes-section {
+                padding: 30px 15px;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cliente-item img {
+                max-height: 50px;
+            }
+            .cliente-nome {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Menu mobile */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-radius: 20px;
+                text-align: center;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <!-- SUBSTITUA "logo.png" PELO CAMINHO DA SUA LOGO -->
+                <img src="logo.png" alt="Gráfica Matriz">
+            </a>
+            <div class="nav-links">
+                <a href="#">Início</a>
+                <a href="#">Clientes</a>
+                <a href="#">Trabalhos</a>
+                <a href="#">Quem Somos</a>
+                <a href="#">Orçamento</a>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO CLIENTES -->
+    <section class="clientes-section">
+        <h2>Nossos Clientes</h2>
+        <p>Marcas que confiam no nosso trabalho</p>
+        <div class="clientes-grid">
+            <!-- 
+                SUBSTITUA OS SRC E OS TEXTOS PELOS DADOS REAIS.
+                Exemplo: <img src="imagens/logo-cliente.png" alt="Cliente X">
+                O nome abaixo da logo pode ser omitido (basta remover a div .cliente-nome).
+            -->
+            <div class="cliente-item">
+                <img src="zara.jpg" alt="Zara">
+                <div class="cliente-nome">Zara</div>
+            </div>
+            <div class="cliente-item">
+                <img src="compania.jpg" alt="Companhia">
+                <div class="cliente-nome">Companhia</div>
+            </div>
+            <div class="cliente-item">
+                <img src="rock.png" alt="Rock">
+                <div class="cliente-nome">Rock</div>
+            </div>
+            <div class="cliente-item">
+                <img src="kfc.jpg" alt="KFC">
+                <div class="cliente-nome">KFC</div>
+            </div>
+            <div class="cliente-item">
+                <img src="mc.jpg" alt="McDonald's">
+                <div class="cliente-nome">McDonald's</div>
+            </div>
+            <div class="cliente-item">
+                <img src="tipo.png" alt="Tipo">
+                <div class="cliente-nome">Tipo</div>
+            </div>
+            <div class="cliente-item">
+                <img src="boticario.jpg" alt="O Boticário">
+                <div class="cliente-nome">O Boticário</div>
+            </div>
+            <div class="cliente-item">
+                <img src="lore.jpg" alt="L'Oréal">
+                <div class="cliente-nome">L'Oréal</div>
+            </div>
+            <div class="cliente-item">
+                <img src="quemdisse.jpg" alt="Quem Disse, Berenice?">
+                <div class="cliente-nome">Quem Disse</div>
+            </div>
+            <div class="cliente-item">
+                <img src="nivea.jpg" alt="Nivea">
+                <div class="cliente-nome">Nivea</div>
+            </div>
+            <div class="cliente-item">
+                <img src="colgate.jpg" alt="Colgate">
+                <div class="cliente-nome">Colgate</div>
+            </div>
+            <div class="cliente-item">
+                <img src="net.jpg" alt="NET">
+                <div class="cliente-nome">NET</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <!-- SUBSTITUA "logo.png" PELO CAMINHO DA SUA LOGO -->
+                    <img src="logo.png" alt="Gráfica Matriz">
+                </div>
+                <p>Soluções gráficas de alto impacto, unindo criatividade, tecnologia e qualidade para valorizar sua marca.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank">📘</a>
+                    <a href="#" target="_blank">📷</a>
+                    <a href="#" target="_blank">🐦</a>
+                    <a href="#" target="_blank">🔗</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <a href="#">Início</a>
+                <a href="#">Clientes</a>
+                <a href="#">Trabalhos</a>
+                <a href="#">Quem Somos</a>
+                <a href="#">Orçamento</a>
+            </div>
+            <div class="footer-col">
+                <h4>Serviços</h4>
+                <a href="#">Impressão Digital</a>
+                <a href="#">Offset</a>
+                <a href="#">Acabamento</a>
+                <a href="#">Design Gráfico</a>
+                <a href="#">Embalagens</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p>📞 (11) 3456-7890</p>
+                <p>📱 (11) 98765-4321</p>
+                <p>✉️ contato@graficamatriz.com.br</p>
+                <p>📍 Av. Paulista, 1000 - São Paulo</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Gráfica Matriz. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
