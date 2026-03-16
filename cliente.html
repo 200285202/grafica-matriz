@@ -8,9 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="CSS/Estilo22.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
+    <!-- Se houver CSS externo, mantenha; caso contrário, remova a linha abaixo -->
+    <!-- <link rel="stylesheet" type="text/css" href="CSS/Estilo22.css"> -->
     <style>
         * {
             margin: 0;
@@ -65,9 +64,11 @@
             transform: scale(1.05);
         }
 
-        .nav-links {
+        /* Estrutura corrigida: ul dentro de .nav-links */
+        .nav-links ul {
             display: flex;
             gap: 30px;
+            list-style: none;
         }
 
         .nav-links a {
@@ -165,7 +166,6 @@
             overflow: hidden;
         }
 
-        /* Efeito de brilho no hover */
         .cliente-item::before {
             content: '';
             position: absolute;
@@ -188,7 +188,6 @@
             left: 125%;
         }
 
-        /* Estilo das imagens (logos) */
         .cliente-item img {
             max-width: 100%;
             max-height: 80px;
@@ -207,7 +206,6 @@
             transform: scale(1.05);
         }
 
-        /* Nome do cliente (opcional) */
         .cliente-nome {
             font-size: 0.85rem;
             font-weight: 400;
@@ -388,22 +386,23 @@
             .mobile-menu-btn {
                 display: block;
             }
-            .nav-links {
+            .nav-links ul {
                 display: none;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .nav-links.active ul {
+                display: flex;
                 position: absolute;
                 top: 70px;
                 left: 0;
                 right: 0;
                 background: white;
-                flex-direction: column;
                 padding: 20px;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                 border-radius: 20px;
                 text-align: center;
                 z-index: 1000;
-            }
-            .nav-links.active {
-                display: flex;
             }
         }
     </style>
@@ -416,11 +415,13 @@
                 <!-- SUBSTITUA "logo.png" PELO CAMINHO DA SUA LOGO -->
                 <img src="logo.png" alt="Gráfica Matriz">
             </a>
-            <div class="nav-links">
-                 <li><a href="clientes.html">Clientes</a></li>
-            <li><a href="galeria.html">Galeria</a></li>
-            <li><a href="orcamento.html">Orçamento</a></li>
-            <li><a href="quemsomos.html">Quem Somos</a></li>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="clientes.html">Clientes</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="orcamento.html">Orçamento</a></li>
+                    <li><a href="quemsomos.html">Quem Somos</a></li>
+                </ul>
             </div>
             <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
         </div>
