@@ -8,9 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (para ícones do rodapé e menu) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Seu CSS externo (se necessário) -->
     <link rel="stylesheet" type="text/css" href="CSS/Estilo22.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <style>
         * {
             margin: 0;
@@ -21,16 +22,95 @@
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(145deg, #f5f5f5 0%, #ffffff 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            color: #1e1e2a;
+            padding: 0 20px;
         }
 
-        /* Container principal */
+        /* ===== NAVBAR FIXA (padronizada) ===== */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 1300px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #1e1e2a;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover {
+            color: #982929;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #982929, #f9bf00);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Botão hambúrguer */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: #982929;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Ajuste para rolagem com navbar fixa */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* ===== CONTEÚDO PRINCIPAL (Quem Somos) ===== */
         .quem-somos-section {
             max-width: 1300px;
             width: 100%;
@@ -42,7 +122,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
-            margin: 40px 0;
+            margin: 120px auto 40px; /* margem superior para compensar navbar fixa */
         }
 
         /* Textura gráfica de meio-tom (halftone) */
@@ -77,7 +157,6 @@
             z-index: 2;
         }
 
-        /* Cabeçalho */
         .section-header {
             text-align: center;
             margin-bottom: 50px;
@@ -115,7 +194,6 @@
             line-height: 1.8;
         }
 
-        /* Texto institucional */
         .institucional-texto {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -140,7 +218,6 @@
             border-right: 6px solid #f9bf00;
         }
 
-        /* Grid Missão, Visão e Valores */
         .mv-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -166,7 +243,6 @@
             border-color: #982929;
         }
 
-        /* Efeito de brilho (igual ao das outras seções) */
         .mv-card::before {
             content: '';
             position: absolute;
@@ -222,7 +298,6 @@
             font-size: 1rem;
         }
 
-        /* Valores em lista */
         .valores-detalhados {
             margin: 50px 0;
         }
@@ -286,7 +361,6 @@
             line-height: 1.6;
         }
 
-        /* NOSSO ESPAÇO - Galeria de fotos */
         .nosso-espaco {
             margin: 70px 0 50px;
         }
@@ -379,7 +453,6 @@
             transform: translateY(0);
         }
 
-        /* LOCALIZAÇÃO */
         .localizacao {
             margin: 60px 0 20px;
         }
@@ -500,7 +573,140 @@
             box-shadow: 0 10px 25px rgba(152,41,41,0.4);
         }
 
-        /* Responsividade */
+        /* ===== RODAPÉ PADRONIZADO ===== */
+        .footer {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 -10px 30px -10px rgba(0,0,0,0.05);
+            margin-top: 60px;
+            border-radius: 40px 40px 0 0;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #982929;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #982929, #f9bf00);
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-col p {
+            color: #4a4a5a;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            color: #4a4a5a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li i {
+            width: 20px;
+            color: #982929;
+        }
+
+        .footer-col ul li a {
+            color: #4a4a5a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #982929;
+            padding-left: 5px;
+        }
+
+        .footer-logo {
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(152,41,41,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #982929;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .social-links a:hover {
+            background: #982929;
+            color: white;
+            transform: translateY(-3px);
+            border-color: #f9bf00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .footer-bottom a {
+            color: #982929;
+            text-decoration: none;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 900px) {
             .mv-grid {
                 grid-template-columns: 1fr;
@@ -514,11 +720,48 @@
             .section-header h2 {
                 font-size: 2.5rem;
             }
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                border-radius: 20px 0 0 20px;
+            }
+            .nav-menu.active {
+                right: 0;
+            }
+            .nav-menu a {
+                font-size: 1.3rem;
+            }
         }
 
         @media (max-width: 600px) {
             .quem-somos-section {
                 padding: 40px 20px;
+                margin-top: 100px;
+            }
+            .navbar {
+                padding: 10px 20px;
+            }
+            .logo img {
+                height: 40px;
             }
             .section-header p {
                 font-size: 1rem;
@@ -542,22 +785,41 @@
             .info-local {
                 padding: 30px 20px;
             }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- NAVBAR FIXA -->
+    <nav class="navbar">
+        <a href="#inicio" class="logo">
+            <!-- SUBSTITUA "logo.png" PELO CAMINHO DA SUA LOGO -->
+            <img src="logo.png" alt="Gráfica Matriz">
+        </a>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#clientes">Clientes</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#orcamento">Orçamento</a></li>
+            <li><a href="#quemsomos">Quem Somos</a></li>
+        </ul>
+    </nav>
+
+    <!-- SEÇÃO QUEM SOMOS -->
     <section class="quem-somos-section">
         <div class="container">
-            <!-- CABEÇALHO -->
             <div class="section-header">
                 <h2>Quem Somos</h2>
                 <p>Conheça a história, os valores e o espaço da Gráfica Matriz</p>
             </div>
 
-            <!-- TEXTO INSTITUCIONAL COMPLETO -->
             <div class="institucional-texto">
                 <p>A Gráfica Matriz nasceu com o propósito de transformar ideias em materiais visuais de alto impacto. Trabalhamos com soluções gráficas que ajudam empresas, marcas e profissionais a se destacarem no mercado.</p>
-                
                 <p>Unimos criatividade, tecnologia e qualidade de impressão para produzir materiais que comunicam, encantam e fortalecem a identidade de cada cliente. Nosso compromisso é entregar não apenas produtos gráficos, mas resultados que valorizam cada projeto.</p>
             </div>
 
@@ -565,7 +827,6 @@
                 Na Gráfica Matriz, cada detalhe importa — do design à impressão final.
             </div>
 
-            <!-- MISSÃO, VISÃO E VALORES (cards) -->
             <div class="mv-grid">
                 <div class="mv-card">
                     <div class="mv-icon">🎯</div>
@@ -584,7 +845,6 @@
                 </div>
             </div>
 
-            <!-- DETALHAMENTO DOS VALORES -->
             <div class="valores-detalhados">
                 <h3>Nossos Valores</h3>
                 <div class="valores-grid">
@@ -616,13 +876,11 @@
                 </div>
             </div>
 
-            <!-- NOSSO ESPAÇO -->
             <div class="nosso-espaco">
                 <h3>Conheça Nosso Espaço</h3>
                 <div class="subtitulo">Estrutura moderna e preparada para entregar o melhor resultado</div>
                 
                 <div class="espaco-grid">
-                    <!-- Substitua pelos caminhos das suas fotos -->
                     <div class="espaco-item">
                         <img src="https://images.unsplash.com/photo-1562408595-e0dc1685c4bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Entrada da gráfica">
                         <div class="espaco-legenda">Entrada e recepção</div>
@@ -642,14 +900,12 @@
                 </div>
             </div>
 
-            <!-- LOCALIZAÇÃO -->
             <div class="localizacao">
                 <h3>Onde Estamos</h3>
                 <div class="subtitulo">Venha nos visitar ou fale conosco</div>
                 
                 <div class="localizacao-container">
                     <div class="mapa">
-                        <!-- Substitua pelo embed do seu mapa (Google Maps) -->
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0754267452927!2d-46.65342658538352!3d-23.565734367638448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                     <div class="info-local">
@@ -671,5 +927,93 @@
             </div>
         </div>
     </section>
+
+    <!-- RODAPÉ PADRONIZADO -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Gráfica Matriz">
+                </div>
+                <p>Soluções gráficas de alto impacto, unindo criatividade, tecnologia e qualidade para valorizar sua marca.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Início</a></li>
+                    <li><a href="#clientes"><i class="fas fa-chevron-right"></i> Clientes</a></li>
+                    <li><a href="#galeria"><i class="fas fa-chevron-right"></i> Galeria</a></li>
+                    <li><a href="#quemsomos"><i class="fas fa-chevron-right"></i> Quem Somos</a></li>
+                    <li><a href="#orcamento"><i class="fas fa-chevron-right"></i> Orçamento</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - São Paulo/SP</li>
+                    <li><i class="fas fa-phone"></i> (11) 3456-7890</li>
+                    <li><i class="fas fa-envelope"></i> contato@graficamatriz.com.br</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horário</h3>
+                <ul>
+                    <li><i class="fas fa-clock"></i> Segunda a Sexta: 8h às 18h</li>
+                    <li><i class="fas fa-clock"></i> Sábado: 8h às 12h</li>
+                    <li><i class="fas fa-clock"></i> Domingo: Fechado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Gráfica Matriz. Todos os direitos reservados. | Desenvolvido por <a href="#">Gráfica Matriz</a></p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO WHATSAPP FLUTUANTE (opcional, pode adicionar se quiser) -->
+    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Gr%C3%A1fica%20Matriz." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp" style="position:fixed;bottom:30px;right:30px;background-color:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 10px rgba(0,0,0,0.3);z-index:100;text-decoration:none;transition:all 0.3s ease;animation:pulse 2s infinite;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <style>
+        /* Animação do WhatsApp (opcional) */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+
+    <script>
+        // Menu mobile
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fechar menu ao clicar em link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
 </body>
 </html>
