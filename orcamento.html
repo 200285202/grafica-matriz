@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gráfica Matriz - Quem Somos</title>
+    <title>Gráfica Matriz - Orçamento</title>
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome (para ícones do rodapé e menu) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Seu CSS externo (se necessário) -->
     <link rel="stylesheet" type="text/css" href="CSS/Estilo22.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <style>
         * {
             margin: 0;
@@ -26,7 +27,7 @@
             padding: 0 20px;
         }
 
-        /* ===== NAVBAR FIXA (padronizada) ===== */
+        /* ===== NAVBAR FIXA ===== */
         .navbar {
             position: fixed;
             top: 20px;
@@ -96,7 +97,6 @@
             width: 100%;
         }
 
-        /* Botão hambúrguer */
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -105,16 +105,16 @@
             z-index: 1001;
         }
 
-        /* Ajuste para rolagem com navbar fixa */
+        /* Ajuste de rolagem */
         section {
             scroll-margin-top: 100px;
         }
 
-        /* ===== CONTEÚDO PRINCIPAL (Quem Somos) ===== */
-        .quem-somos-section {
+        /* ===== SEÇÃO ORÇAMENTO ===== */
+        .orcamento-section {
             max-width: 1300px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(5px);
             padding: 60px 40px;
             border-radius: 40px;
@@ -122,11 +122,11 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
-            margin: 120px auto 40px; /* margem superior para compensar navbar fixa */
+            margin: 120px auto 40px;
         }
 
-        /* Textura gráfica de meio-tom (halftone) */
-        .quem-somos-section::before {
+        /* Textura halftone */
+        .orcamento-section::before {
             content: '';
             position: absolute;
             top: -20px;
@@ -139,7 +139,7 @@
             z-index: 0;
         }
 
-        .quem-somos-section::after {
+        .orcamento-section::after {
             content: '';
             position: absolute;
             bottom: -20px;
@@ -152,7 +152,7 @@
             z-index: 0;
         }
 
-        .container {
+        .orcamento-container {
             position: relative;
             z-index: 2;
         }
@@ -169,7 +169,6 @@
             margin-bottom: 20px;
             position: relative;
             display: inline-block;
-            letter-spacing: -0.5px;
         }
 
         .section-header h2::after {
@@ -189,391 +188,149 @@
             color: #4a4a5a;
             font-weight: 300;
             font-size: 1.2rem;
-            max-width: 900px;
+            max-width: 700px;
             margin: 30px auto 0;
             line-height: 1.8;
         }
 
-        .institucional-texto {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-            margin: 30px 0;
+        .orcamento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
         }
 
-        .institucional-texto p {
+        /* Formulário */
+        .formulario {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .destaque-final {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
-            color: #982929;
-            font-size: 1.2rem;
-            text-align: center;
-            margin: 40px 0;
-            padding: 20px;
-            background: rgba(152, 41, 41, 0.05);
+            color: #1e1e2a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #982929;
+            box-shadow: 0 0 0 3px rgba(152,41,41,0.1);
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-orcamento {
+            background: linear-gradient(135deg, #982929, #b83b3b);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
             border-radius: 50px;
-            border-left: 6px solid #f9bf00;
-            border-right: 6px solid #f9bf00;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(152,41,41,0.3);
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 10px;
         }
 
-        .mv-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin: 50px 0;
+        .btn-orcamento:hover {
+            background: linear-gradient(135deg, #7e1f1f, #982929);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(152,41,41,0.4);
         }
 
-        .mv-card {
+        /* Informações de contato */
+        .info-contato {
             background: white;
             border-radius: 30px;
-            padding: 35px 25px;
+            padding: 40px;
             box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.15);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
             border: 1px solid rgba(0,0,0,0.02);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        .mv-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 45px -15px rgba(152, 41, 41, 0.25);
-            border-color: #982929;
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
-        .mv-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: skewX(-25deg);
-            transition: left 0.7s ease;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .mv-card:hover::before {
-            left: 125%;
-        }
-
-        .mv-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, rgba(152,41,41,0.1), rgba(249,191,0,0.1));
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(152,41,41,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 600;
+            font-size: 1.5rem;
             color: #982929;
-            border: 2px dashed #f9bf00;
-            transition: all 0.3s;
+            border: 1px dashed #f9bf00;
         }
 
-        .mv-card:hover .mv-icon {
-            background: #982929;
-            color: white;
-            border: 2px solid #f9bf00;
-            transform: scale(1.05);
-        }
-
-        .mv-card h3 {
-            font-size: 1.8rem;
+        .info-text h4 {
+            font-size: 1.2rem;
             font-weight: 600;
+            margin-bottom: 5px;
             color: #1e1e2a;
-            margin-bottom: 15px;
         }
 
-        .mv-card p {
-            color: #5a5a6e;
-            font-weight: 300;
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-
-        .valores-detalhados {
-            margin: 50px 0;
-        }
-
-        .valores-detalhados h3 {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1e1e2a;
-            margin-bottom: 40px;
-        }
-
-        .valores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-        }
-
-        .valor-item {
-            background: white;
-            border-radius: 20px;
-            padding: 25px 20px;
-            text-align: center;
-            box-shadow: 0 8px 20px -10px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border: 1px solid #f0f0f0;
-        }
-
-        .valor-item:hover {
-            border-color: #982929;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -12px rgba(152,41,41,0.2);
-        }
-
-        .valor-numero {
-            width: 45px;
-            height: 45px;
-            background: #f9bf00;
-            color: #1e1e2a;
-            font-weight: 700;
-            font-size: 1.3rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            box-shadow: 0 5px 10px rgba(249,191,0,0.3);
-        }
-
-        .valor-item h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #982929;
-            margin-bottom: 10px;
-        }
-
-        .valor-item p {
-            font-size: 0.95rem;
+        .info-text p {
             color: #5a5a6e;
             font-weight: 300;
             line-height: 1.6;
         }
 
-        .nosso-espaco {
-            margin: 70px 0 50px;
-        }
-
-        .nosso-espaco h3 {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #1e1e2a;
-            margin-bottom: 15px;
-        }
-
-        .nosso-espaco .subtitulo {
-            text-align: center;
-            color: #5a5a6e;
-            font-weight: 300;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-
-        .espaco-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .espaco-item {
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px -15px rgba(0,0,0,0.2);
-            transition: all 0.4s ease;
-            aspect-ratio: 4/3;
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .espaco-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: #982929;
-            box-shadow: 0 25px 40px -15px rgba(152,41,41,0.3);
-        }
-
-        .espaco-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: skewX(-25deg);
-            transition: left 0.7s ease;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .espaco-item:hover::before {
-            left: 125%;
-        }
-
-        .espaco-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .espaco-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .espaco-legenda {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 30px 15px 15px;
-            font-weight: 400;
-            font-size: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-            text-align: left;
-        }
-
-        .espaco-item:hover .espaco-legenda {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .localizacao {
-            margin: 60px 0 20px;
-        }
-
-        .localizacao h3 {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #1e1e2a;
-            margin-bottom: 15px;
-        }
-
-        .localizacao .subtitulo {
-            text-align: center;
-            color: #5a5a6e;
-            font-weight: 300;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-
-        .localizacao-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            background: white;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px -15px rgba(0,0,0,0.15);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .mapa {
-            width: 100%;
-            height: 350px;
-            min-height: 100%;
-        }
-
-        .mapa iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        .info-local {
-            padding: 40px 30px;
-            background: linear-gradient(145deg, #f9f9f9, white);
-        }
-
-        .info-local h4 {
-            font-size: 1.6rem;
-            color: #982929;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .info-local p {
-            margin-bottom: 20px;
-            color: #4a4a5a;
-            line-height: 1.7;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .info-local strong {
-            color: #1e1e2a;
-            min-width: 80px;
-        }
-
-        .info-local .endereco-completo {
-            background: rgba(152,41,41,0.03);
-            padding: 20px;
+        .horario {
+            background: rgba(249,191,0,0.05);
             border-radius: 20px;
+            padding: 20px;
             border-left: 4px solid #f9bf00;
-            margin: 25px 0;
         }
 
-        .info-local .contato {
+        .horario p {
             display: flex;
-            flex-direction: column;
             gap: 10px;
-            margin-top: 20px;
+            margin-bottom: 8px;
         }
 
-        .info-local .contato span {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #333;
-        }
-
-        .info-local .contato i {
-            font-style: normal;
-            font-weight: 500;
+        .horario strong {
             color: #982929;
         }
 
-        .btn-rotas {
-            display: inline-block;
-            background: linear-gradient(135deg, #982929, #b83b3b);
-            color: white;
-            padding: 14px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 25px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(152,41,41,0.3);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-rotas:hover {
-            background: linear-gradient(135deg, #7e1f1f, #982929);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(152,41,41,0.4);
-        }
-
-        /* ===== RODAPÉ PADRONIZADO ===== */
+        /* ===== RODAPÉ ===== */
         .footer {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(5px);
@@ -708,17 +465,8 @@
 
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 900px) {
-            .mv-grid {
+            .orcamento-grid {
                 grid-template-columns: 1fr;
-            }
-            .localizacao-container {
-                grid-template-columns: 1fr;
-            }
-            .mapa {
-                height: 300px;
-            }
-            .section-header h2 {
-                font-size: 2.5rem;
             }
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -750,39 +498,23 @@
             .nav-menu a {
                 font-size: 1.3rem;
             }
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 600px) {
-            .quem-somos-section {
-                padding: 40px 20px;
-                margin-top: 100px;
-            }
             .navbar {
                 padding: 10px 20px;
             }
             .logo img {
                 height: 40px;
             }
-            .section-header p {
-                font-size: 1rem;
+            .orcamento-section {
+                padding: 40px 20px;
+                margin-top: 100px;
             }
-            .institucional-texto {
-                font-size: 1rem;
-            }
-            .destaque-final {
-                font-size: 1rem;
-                padding: 15px;
-            }
-            .mv-card {
-                padding: 25px 15px;
-            }
-            .mv-card h3 {
-                font-size: 1.5rem;
-            }
-            .valores-grid {
-                grid-template-columns: 1fr;
-            }
-            .info-local {
+            .formulario, .info-contato {
                 padding: 30px 20px;
             }
             .footer-container {
@@ -793,10 +525,10 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR FIXA -->
+    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="#inicio" class="logo">
-            <!-- SUBSTITUA "logo.png" PELO CAMINHO DA SUA LOGO -->
+            <!-- Substitua pelo caminho da sua logo -->
             <img src="logo.png" alt="Gráfica Matriz">
         </a>
         <div class="hamburger" id="hamburger">
@@ -810,125 +542,85 @@
         </ul>
     </nav>
 
-    <!-- SEÇÃO QUEM SOMOS -->
-    <section class="quem-somos-section">
-        <div class="container">
+    <!-- SEÇÃO ORÇAMENTO -->
+    <section class="orcamento-section" id="orcamento">
+        <div class="orcamento-container">
             <div class="section-header">
-                <h2>Quem Somos</h2>
-                <p>Conheça a história, os valores e o espaço da Gráfica Matriz</p>
+                <h2>Solicite um Orçamento</h2>
+                <p>Conte-nos sobre seu projeto e receba uma proposta personalizada</p>
             </div>
 
-            <div class="institucional-texto">
-                <p>A Gráfica Matriz nasceu com o propósito de transformar ideias em materiais visuais de alto impacto. Trabalhamos com soluções gráficas que ajudam empresas, marcas e profissionais a se destacarem no mercado.</p>
-                <p>Unimos criatividade, tecnologia e qualidade de impressão para produzir materiais que comunicam, encantam e fortalecem a identidade de cada cliente. Nosso compromisso é entregar não apenas produtos gráficos, mas resultados que valorizam cada projeto.</p>
-            </div>
-
-            <div class="destaque-final">
-                Na Gráfica Matriz, cada detalhe importa — do design à impressão final.
-            </div>
-
-            <div class="mv-grid">
-                <div class="mv-card">
-                    <div class="mv-icon">🎯</div>
-                    <h3>Missão</h3>
-                    <p>Oferecer soluções gráficas criativas e de alta qualidade, ajudando empresas e profissionais a comunicarem suas ideias com clareza, impacto e profissionalismo.</p>
-                </div>
-                <div class="mv-card">
-                    <div class="mv-icon">👁️</div>
-                    <h3>Visão</h3>
-                    <p>Ser reconhecida como uma gráfica referência em inovação, qualidade e atendimento, contribuindo para o crescimento e a visibilidade das marcas de nossos clientes.</p>
-                </div>
-                <div class="mv-card">
-                    <div class="mv-icon">⭐</div>
-                    <h3>Valores</h3>
-                    <p>Qualidade, Criatividade, Compromisso com o cliente, Agilidade e Confiança. São eles que guiam cada projeto e relação.</p>
-                </div>
-            </div>
-
-            <div class="valores-detalhados">
-                <h3>Nossos Valores</h3>
-                <div class="valores-grid">
-                    <div class="valor-item">
-                        <div class="valor-numero">1</div>
-                        <h4>Qualidade</h4>
-                        <p>Compromisso com materiais bem produzidos e acabamento profissional.</p>
-                    </div>
-                    <div class="valor-item">
-                        <div class="valor-numero">2</div>
-                        <h4>Criatividade</h4>
-                        <p>Buscamos sempre soluções visuais que valorizem cada projeto.</p>
-                    </div>
-                    <div class="valor-item">
-                        <div class="valor-numero">3</div>
-                        <h4>Compromisso com o cliente</h4>
-                        <p>Entendemos a necessidade de cada cliente para entregar o melhor resultado.</p>
-                    </div>
-                    <div class="valor-item">
-                        <div class="valor-numero">4</div>
-                        <h4>Agilidade</h4>
-                        <p>Respeitamos prazos e buscamos eficiência em todos os processos.</p>
-                    </div>
-                    <div class="valor-item">
-                        <div class="valor-numero">5</div>
-                        <h4>Confiança</h4>
-                        <p>Construímos relações transparentes e duradouras com nossos clientes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nosso-espaco">
-                <h3>Conheça Nosso Espaço</h3>
-                <div class="subtitulo">Estrutura moderna e preparada para entregar o melhor resultado</div>
-                
-                <div class="espaco-grid">
-                    <div class="espaco-item">
-                        <img src="https://images.unsplash.com/photo-1562408595-e0dc1685c4bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Entrada da gráfica">
-                        <div class="espaco-legenda">Entrada e recepção</div>
-                    </div>
-                    <div class="espaco-item">
-                        <img src="https://images.unsplash.com/photo-1562408595-5b0c5b9b4b4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Área de impressão">
-                        <div class="espaco-legenda">Área de impressão digital</div>
-                    </div>
-                    <div class="espaco-item">
-                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Acabamento">
-                        <div class="espaco-legenda">Setor de acabamento</div>
-                    </div>
-                    <div class="espaco-item">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Atendimento">
-                        <div class="espaco-legenda">Área de atendimento</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="localizacao">
-                <h3>Onde Estamos</h3>
-                <div class="subtitulo">Venha nos visitar ou fale conosco</div>
-                
-                <div class="localizacao-container">
-                    <div class="mapa">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0754267452927!2d-46.65342658538352!3d-23.565734367638448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                    <div class="info-local">
-                        <h4>Gráfica Matriz</h4>
-                        <div class="endereco-completo">
-                            <p><strong>Endereço:</strong> Av. Paulista, 1000<br>Bela Vista, São Paulo - SP<br>CEP: 01310-100</p>
+            <div class="orcamento-grid">
+                <!-- Formulário -->
+                <div class="formulario">
+                    <form id="formOrcamento">
+                        <div class="form-group">
+                            <label for="nome">Nome completo *</label>
+                            <input type="text" id="nome" name="nome" required>
                         </div>
-                        
-                        <div class="contato">
-                            <p><strong>Horário:</strong> Segunda a Sexta, 8h às 18h | Sábado, 8h às 12h</p>
-                            <p><span><i>📞</i> (11) 3456-7890</span></p>
-                            <p><span><i>📱</i> (11) 98765-4321 (WhatsApp)</span></p>
-                            <p><span><i>✉️</i> contato@graficamatriz.com.br</span></p>
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
-                        
-                        <a href="https://www.google.com/maps/dir//Av.+Paulista,+1000+-+Bela+Vista,+S%C3%A3o+Paulo+-+SP" target="_blank" class="btn-rotas">Traçar rota no mapa</a>
+                        <div class="form-group">
+                            <label for="telefone">Telefone / WhatsApp *</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="servico">Tipo de serviço *</label>
+                            <select id="servico" name="servico" required>
+                                <option value="">Selecione...</option>
+                                <option value="cartao">Cartão de Visita</option>
+                                <option value="folder">Folder / Flyer</option>
+                                <option value="banner">Banner / Lona</option>
+                                <option value="livro">Livro / Revista</option>
+                                <option value="embalagem">Embalagem</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Detalhes do projeto *</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Descreva o que precisa: quantidade, tamanho, cores, prazo..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-orcamento">Solicitar Orçamento</button>
+                    </form>
+                </div>
+
+                <!-- Informações de contato -->
+                <div class="info-contato">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <h4>Visite nossa loja</h4>
+                            <p>Av. Paulista, 1000<br>Bela Vista, São Paulo - SP<br>CEP: 01310-100</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <h4>Ligue para nós</h4>
+                            <p>(11) 3456-7890<br>(11) 98765-4321 (WhatsApp)</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-text">
+                            <h4>Envie um e-mail</h4>
+                            <p>contato@graficamatriz.com.br<br>orcamento@graficamatriz.com.br</p>
+                        </div>
+                    </div>
+                    <div class="horario">
+                        <h4>🕒 Horário de funcionamento</h4>
+                        <p><strong>Segunda a Sexta:</strong> 8h às 18h</p>
+                        <p><strong>Sábado:</strong> 8h às 12h</p>
+                        <p><strong>Domingo:</strong> Fechado</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RODAPÉ PADRONIZADO -->
+    <!-- RODAPÉ -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-col">
@@ -937,9 +629,9 @@
                 </div>
                 <p>Soluções gráficas de alto impacto, unindo criatividade, tecnologia e qualidade para valorizar sua marca.</p>
                 <div class="social-links">
-                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -974,13 +666,12 @@
         </div>
     </footer>
 
-    <!-- BOTÃO WHATSAPP FLUTUANTE (opcional, pode adicionar se quiser) -->
-    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Gr%C3%A1fica%20Matriz." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp" style="position:fixed;bottom:30px;right:30px;background-color:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 10px rgba(0,0,0,0.3);z-index:100;text-decoration:none;transition:all 0.3s ease;animation:pulse 2s infinite;">
+    <!-- Botão WhatsApp flutuante (opcional) -->
+    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="whatsapp-float" target="_blank" style="position:fixed;bottom:30px;right:30px;background-color:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 10px rgba(0,0,0,0.3);z-index:100;text-decoration:none;transition:all 0.3s ease;animation:pulse 2s infinite;">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <style>
-        /* Animação do WhatsApp (opcional) */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
@@ -989,7 +680,6 @@
     </style>
 
     <script>
-        // Menu mobile
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 
@@ -1005,7 +695,6 @@
             }
         });
 
-        // Fechar menu ao clicar em link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -1013,6 +702,13 @@
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             });
+        });
+
+        // Interceptar envio do formulário (exemplo)
+        document.getElementById('formOrcamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado! Sua solicitação foi enviada. Em breve entraremos em contato.');
+            // Aqui você pode adicionar código para enviar os dados via AJAX
         });
     </script>
 </body>
